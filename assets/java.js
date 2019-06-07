@@ -9,13 +9,19 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+// creates a variable to reference the database
   var database = firebase.database();
 
+// Capturing the button click
  $("#addTrain").on("click", function(){
+
+// preventing multiple submission after pressing the button
+event.preventDefault();
+
+// Initial Variables & grabbing values from text-boxes
      var trainName = $("#trainName").val().trim();
      var desination = $("#desination").val().trim();
-     var firstTrainTime = $("#nextArrival").val().trim();
+     var firstTrainTime = $("#firstTrainTime").val().trim();
      var frequency = $("#frequency").val().trim();
      
      
@@ -23,29 +29,26 @@ var firebaseConfig = {
         trainName: trainName,
         desination: desination,
         firstTrainTime: firstTrainTime,
-        frequency: frequency,
+        frequency: frequency
         
     }
-
+// pushes information to firbase
     database.ref().push(newTrain);
 
     // alert - user that info is input
     // clear boxes of input form
-    event.preventDefault();
 // append info to table
 
- })
-
-// moment.js library - understand how to read the minutes and calcutate how many minutes between
-
-//  what is happening
-// be added to the table - dynamic rows with the information
-// create a firebas listener
+ });
 database.ref().on("child_added", function(snapshot){
-    console.log(snapshot.val())
-    // get the value from the snapshot
-    // jquery to append to you html table
-    // need mooment.js to calculate the next train and the remaind minutes
+    var sv = snapshot.val();
+
+    console.log(sv.trainName);
+    console.log(sv.desination);
+    console.log(sv.firstTrainTime);
+    console.log(sv.frequency);
+
+// Changing HTML to reflect new data
 var trainName = snapshot.val().trainName;
 var desination = snapshot.val().desination;
 var firstTrainTime = snapshot.val().firstTrainTime;
@@ -70,5 +73,21 @@ td4.text(frequency)
 tr.append(td4)
 
 $("tbody").append();
-})
+
+// handles errors
+}, function(errorObject) {
+    console.log("Errors Handled: " + errorObject.code);
+});
+
+
 // bonus - refresh page every minute to update table - reference table or page
+// moment.js library - understand how to read the minutes and calcutate how many minutes between
+
+//  what is happening
+// be added to the table - dynamic rows with the information
+// create a firebas listener
+// database.ref().on("child_added", function(snapshot){
+//     console.log(snapshot.val())
+//     // get the value from the snapshot
+//     // jquery to append to you html table
+//     // need mooment.js to calculate the next train and the remaind minutes
