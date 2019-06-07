@@ -10,7 +10,7 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  var db = firebase.database();
+  var database = firebase.database();
 
  $("#addTrain").on("click", function(){
      var trainName = $("#trainName").val().trim();
@@ -25,7 +25,7 @@ var firebaseConfig = {
         firstTrainTime: firstTrainTime,
     }
 
-    db.ref().push(newTrain);
+    database.ref().push(newTrain);
 
     // alert - user that info is input
     // clear boxes of input form
@@ -38,7 +38,7 @@ var firebaseConfig = {
 //  what is happening
 // be added to the table - dynamic rows with the information
 // create a firebas listener
-db.ref().on("child_added", function(snapshot){
+database.ref().on("child_added", function(snapshot){
     console.log(snapshot.val())
     // get the value from the snapshot
     // jquery to append to you html table
