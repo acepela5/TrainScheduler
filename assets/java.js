@@ -41,6 +41,7 @@ event.preventDefault();
 
  });
 database.ref().on("child_added", function(snapshot){
+    // get the value from the snapshot
     var sv = snapshot.val();
 
     console.log(sv.trainName);
@@ -48,11 +49,16 @@ database.ref().on("child_added", function(snapshot){
     console.log(sv.firstTrainTime);
     console.log(sv.frequency);
 
-// Changing HTML to reflect new data
+    // Changing HTML to reflect new data
 var trainName = snapshot.val().trainName;
 var desination = snapshot.val().desination;
 var firstTrainTime = snapshot.val().firstTrainTime;
 var frequency = snapshot.val().frequency;
+
+$("#table-name").text(trainName);
+$("#table-destination").text(desination);
+$("#table-frequency").text(frequency);
+    //jquery to append to you html table
 
 var tr=$("<tr>");
 
@@ -65,12 +71,8 @@ td2.text(desination)
 tr.append(td2)
 
 var td3=$("<td>");
-td3.text(firstTrainTime)
+td3.text(frequency)
 tr.append(td3)
-
-var td4=$("<td>");
-td4.text(frequency)
-tr.append(td4)
 
 $("tbody").append();
 
@@ -86,8 +88,4 @@ $("tbody").append();
 //  what is happening
 // be added to the table - dynamic rows with the information
 // create a firebas listener
-// database.ref().on("child_added", function(snapshot){
-//     console.log(snapshot.val())
-//     // get the value from the snapshot
-//     // jquery to append to you html table
 //     // need mooment.js to calculate the next train and the remaind minutes
