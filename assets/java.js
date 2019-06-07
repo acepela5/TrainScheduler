@@ -15,20 +15,23 @@ var firebaseConfig = {
  $("#addTrain").on("click", function(){
      var trainName = $("#trainName").val().trim();
      var desination = $("#desination").val().trim();
-     var frequency = $("#frequency").val().trim();
      var firstTrainTime = $("#nextArrival").val().trim();
+     var frequency = $("#frequency").val().trim();
+     
      
     var newTrain = {
         trainName: trainName,
         desination: desination,
-        frequency: frequency,
         firstTrainTime: firstTrainTime,
+        frequency: frequency,
+        
     }
 
     database.ref().push(newTrain);
 
     // alert - user that info is input
     // clear boxes of input form
+    event.preventDefault();
 // append info to table
 
  })
@@ -43,6 +46,29 @@ database.ref().on("child_added", function(snapshot){
     // get the value from the snapshot
     // jquery to append to you html table
     // need mooment.js to calculate the next train and the remaind minutes
+var trainName = snapshot.val().trainName;
+var desination = snapshot.val().desination;
+var firstTrainTime = snapshot.val().firstTrainTime;
+var frequency = snapshot.val().frequency;
 
+var tr=$("<tr>");
+
+var td1=$("<td>");
+td1.text(trainName)
+tr.append(td1)
+
+var td2=$("<td>");
+td2.text(desination)
+tr.append(td2)
+
+var td3=$("<td>");
+td3.text(firstTrainTime)
+tr.append(td3)
+
+var td4=$("<td>");
+td4.text(frequency)
+tr.append(td4)
+
+$("tbody").append();
 })
 // bonus - refresh page every minute to update table - reference table or page
