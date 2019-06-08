@@ -80,8 +80,29 @@ $("tbody").append();
 }, function(errorObject) {
     console.log("Errors Handled: " + errorObject.code);
 });
+// Assumption
+var tFrequency = 3;
+
+var firstTime = "03:30";
+
+var firstTimeConverted = moment(firstTime, "HH:mm")
+console.log(firstTimeConverted);
+
+var currentTime = moment();
+console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+console.log("DIFFERENCE IN TIME: " + diffTime);
+
+var tRemainder = diffTime % tFrequency;
+console.log(tRemainder);
 
 
+var tMinutesTillTrain = tFrequency - tRemainder;
+console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 // bonus - refresh page every minute to update table - reference table or page
 // moment.js library - understand how to read the minutes and calcutate how many minutes between
 
@@ -89,3 +110,4 @@ $("tbody").append();
 // be added to the table - dynamic rows with the information
 // create a firebas listener
 //     // need mooment.js to calculate the next train and the remaind minutes
+
