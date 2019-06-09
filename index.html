@@ -1,74 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Choo Choo</title>
 
+    <link rel="stylesheet" href="./assets/css/style.css">
+
     <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <!-- Firebase References -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
-  <!-- Moment.js Reference -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-</head>
-<body>
-   <div class="row">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Train Name</th>
-            <th scope="col">Desination</th>
-            <th scope="col">Frequency(min)</th>
-            <th scope="col">Next Arrival</th>
-            <th scope="col">Minutes Away</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="table-name"></td>
-            <td id="table-destination"></td>
-            <td id="table-frequency"></td>
-            <td id="table-next-arrival"></td>
-            <td id="table-minutes-away"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Moment.js Reference -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Train Name</th>
+              <th scope="col">Desination</th>
+              <th scope="col">Frequency(min)</th>
+              <th scope="col">Next Arrival</th>
+              <th scope="col">Minutes Away</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="table-name"></td>
+              <td id="table-destination"></td>
+              <td id="table-frequency"></td>
+              <td id="table-next-arrival"></td>
+              <td id="table-minutes-away"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <form>
         <div class="form-group">
-          <label for="trainName">Train Name</label>
+          <label for="train-name"></label>
           <input type="text" class="form-control" id="trainName" placeholder="Train Name">
         </div>
         <div class="form-group">
-          <label for="desination">Desination</label>
+          <label for="desination"></label>
           <input type="text" class="form-control" id="desination" placeholder="Desination">
         </div>
         <div class="form-group">
-            <label for="firstTrainTime">First Train Time</label>
-            <input type="text" class="form-control" id="firstTrainTime" placeholder="First Train Time">
-          </div>
-          <div class="form-group">
-            <label for="frequency">Frequency</label>
-            <input type="text" class="form-control" id="frequency" placeholder="Frequency">
-          </div>
-            
-        
+          <label for="firstTrainTime"></label>
+          <input type="text" class="form-control" id="firstTrainTime" placeholder="First Train Time">
         </div>
-        <button type="submit" id="addTrain" class="btn btn-primary">Submit</button>
-      </form>
-    <div class="row"></div>
+        <div class="form-group">
+          <label for="frequency"></label>
+          <input type="text" class="form-control" id="frequency" placeholder="Frequency">
+        </div>
+   
+    
+    <button type="submit" id="addTrain" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
-  
-<!-- jquery -->
+  <!-- https://brooklynbetty.net/2011/04/25/chicago-loops/ Designed by Dylan Allread -->
+
+
+    <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      
     <script src="./assets/java.js"></script>
-</body>
+      
+  </body>
+
 </html>

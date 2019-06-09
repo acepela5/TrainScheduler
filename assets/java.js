@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 var firebaseConfig = {
     apiKey: "AIzaSyDIe9l7AALkLkH5PiXloWMd35ir5W3FAOY",
     authDomain: "trainscheduler-3ab75.firebaseapp.com",
@@ -40,14 +42,22 @@ event.preventDefault();
 // append info to table
 
  });
+
+
+
+
+
 database.ref().on("child_added", function(snapshot){
     // get the value from the snapshot
     var sv = snapshot.val();
 
-    console.log(sv.trainName);
-    console.log(sv.desination);
-    console.log(sv.firstTrainTime);
-    console.log(sv.frequency);
+    console.log('sv', sv);
+    
+
+    // console.log(sv.trainName);
+    // console.log(sv.desination);
+    // console.log(sv.firstTrainTime);
+    // console.log(sv.frequency);
 
     // Changing HTML to reflect new data
 var trainName = snapshot.val().trainName;
@@ -74,16 +84,54 @@ var td3=$("<td>");
 td3.text(frequency)
 tr.append(td3)
 
-$("tbody").append();
+
+var tFrequency = sv.frequency;
+
+var firstTime = sv.firstTrainTime;
+
+var firstTimeConverted = moment(firstTime, "HH:mm")
+console.log(firstTimeConverted);
+
+var currentTime = moment();
+console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+console.log("DIFFERENCE IN TIME: " + diffTime);
+
+var tRemainder = diffTime % tFrequency;
+console.log(tRemainder);
+
+
+var tMinutesTillTrain = tFrequency - tRemainder;
+console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+//starttime
+//frequency
+
+
+
+
+var td4=$("<td>");
+td4.text(moment(nextTrain).format("hh:mm"))
+tr.append(td4)
+
+var td5=$("<td>");
+td5.text(tMinutesTillTrain)
+tr.append(td5)
+
+
+$("tbody").append(tr);
 
 // handles errors
 }, function(errorObject) {
     console.log("Errors Handled: " + errorObject.code);
 });
 // Assumption
-var tFrequency = 3;
+var tFrequency = 10;
 
-var firstTime = "03:30";
+var firstTime = "14:50";
 
 var firstTimeConverted = moment(firstTime, "HH:mm")
 console.log(firstTimeConverted);
@@ -111,3 +159,7 @@ console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 // create a firebas listener
 //     // need mooment.js to calculate the next train and the remaind minutes
 
+});
+// clean up logs, maybe look into adding 
+// edge case - prevent user from adding non numbers 
+// if to clean adding future time
