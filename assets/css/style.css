@@ -1,9 +1,36 @@
-body {
-    background-image: url(../images/chicago-loop-left.png);
-    background-position: left top ;
-    background-repeat: no-repeat;
-    background-size: 15%;
-
+iframe {
+    position: fixed;
+    right: 20px;
+    top: 100px;
 }
 
+img {
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    height: 500px;
+    width:200px;
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
 
+.container {
+    position: relative;
+    z-index: 4;
+}
+  
+  img:hover img {
+    opacity: 0.3;
+  }
+  
+  img:hover .middle {
+    opacity: 1;
+  }
+  
+  .text {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+  }

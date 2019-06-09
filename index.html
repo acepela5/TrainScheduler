@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Choo Choo</title>
 
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <!-- Bootstrap -->
@@ -27,6 +30,9 @@
   </head>
 
   <body>
+
+      <iframe src="http://free.timeanddate.com/clock/i6sriokj/n5223/szw160/szh160/hoc000/hbw4/cf100/hgr0/hcw2/fav0/fiv0/mqc000/mqs3/mql25/mqw2/mqd96/mhc000/mhs3/mhl20/mhw2/mhd96/mmc000/mms3/mml5/mmw2/mmd96/hhs2/hhw8/hms2/hmw8/hmr4/hsc000/hss3/hsl90" frameborder="0" width="160" height="160"></iframe>
+
     <div class="container">
       <div class="row">
         <table class="table">
@@ -50,38 +56,68 @@
           </tbody>
         </table>
       </div>
+   <!-- form from materialize -->
+        <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="trainName" class="materialize-textarea"></textarea>
+                  <label for="trainName">Train Name</label>
+                </div>
+              </div>
+            </form>
+          </div>
 
-      <form>
-        <div class="form-group">
-          <label for="train-name"></label>
-          <input type="text" class="form-control" id="trainName" placeholder="Train Name">
-        </div>
-        <div class="form-group">
-          <label for="desination"></label>
-          <input type="text" class="form-control" id="desination" placeholder="Desination">
-        </div>
-        <div class="form-group">
-          <label for="firstTrainTime"></label>
-          <input type="text" class="form-control" id="firstTrainTime" placeholder="First Train Time">
-        </div>
-        <div class="form-group">
-          <label for="frequency"></label>
-          <input type="text" class="form-control" id="frequency" placeholder="Frequency">
-        </div>
-   
+          <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="destination" class="materialize-textarea"></textarea>
+                    <label for="1">Destination</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="firstTrainTime" class="materialize-textarea"></textarea>
+                      <label for="2">First Train Time</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="frequency" class="materialize-textarea"></textarea>
+                      <label for="3">Frequency</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              
     
     <button type="submit" id="addTrain" class="btn btn-primary">Submit</button>
-    </form>
+    
   </div>
 
-  <!-- https://brooklynbetty.net/2011/04/25/chicago-loops/ Designed by Dylan Allread -->
-
+  <img src="./assets/images/chicago-loop-left.png">
+  <div class="middle">
+    <div class="text">by Dylan Allread</div>
+  
+  
 
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <!-- Compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-      
+
     <script src="./assets/java.js"></script>
       
   </body>
