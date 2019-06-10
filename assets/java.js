@@ -29,11 +29,11 @@ var firebaseConfig = {
 
      //  if the text boxes are not filled in, the user will be notified
          if (!trainName || !destination || !firstTrainTime || !frequency){
-         alert("Please fill in all text boxes")
+            $('.alert').alert()
          }
      // if not a number is added to frequency, the user will be notified
          else if (isNaN(frequency)){
-         alert("Please type a valid number")
+            $('.alert').alert()
          }
          else{
             var newTrain = {

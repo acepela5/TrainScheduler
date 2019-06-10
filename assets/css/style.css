@@ -4,15 +4,8 @@ iframe {
     top: 100px;
 }
 
-img {
-    position: absolute;
-    z-index: 1;
-    top: 0px;
-    height: 500px;
-    width:200px;
-    opacity: 1;
-    transition: .5s ease;
-    backface-visibility: hidden;
+form {
+    height: 50px;
 }
 
 .container {
@@ -20,16 +13,48 @@ img {
     z-index: 4;
 }
   
-  img:hover img {
-    opacity: 0.3;
+#imgcon {
+    position: relative;
+    width: 20%;
   }
   
-  img:hover .middle {
+  .image {
+    position: absolute;
     opacity: 1;
+    display: block;
+    width: 200px;
+    height: 600px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    z-index: -1;
+    left: -540px;
+    top: -650px;
   }
+  
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: relative;
+    top: -500px;
+    left: -450px;
+    width: 200px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  } 
+  
+#imgcon:hover .image {
+    opacity: 0.3;
+  } 
+  
+  #imgcon:hover .middle {
+    opacity: 1;
+  } 
   
   .text {
-    background-color: black;
+      display: flex;
+      align-items: center;
+    justify-content: center;
+    background-color: darkgrey;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
