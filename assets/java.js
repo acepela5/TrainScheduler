@@ -1,39 +1,40 @@
 $(document).ready(function(){
 
-var firebaseConfig = {
-    apiKey: "AIzaSyDIe9l7AALkLkH5PiXloWMd35ir5W3FAOY",
-    authDomain: "trainscheduler-3ab75.firebaseapp.com",
-    databaseURL: "https://trainscheduler-3ab75.firebaseio.com",
-    projectId: "trainscheduler-3ab75",
-    storageBucket: "trainscheduler-3ab75.appspot.com",
-    messagingSenderId: "410370824239",
-    appId: "1:410370824239:web:0b19bdff052fe0d4"
-  };
-// Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-// creates a variable to reference the database
-  var database = firebase.database();
+    // firebase key
+    var firebaseConfig = {
+        apiKey: "AIzaSyDIe9l7AALkLkH5PiXloWMd35ir5W3FAOY",
+        authDomain: "trainscheduler-3ab75.firebaseapp.com",
+        databaseURL: "https://trainscheduler-3ab75.firebaseio.com",
+        projectId: "trainscheduler-3ab75",
+        storageBucket: "trainscheduler-3ab75.appspot.com",
+        messagingSenderId: "410370824239",
+        appId: "1:410370824239:web:0b19bdff052fe0d4"
+    };
+     // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+     // creates a variable to reference the database
+    var database = firebase.database();
 
   
-// Capturing the button click
- $("#addTrain").on("click", function(){
+     // Capturing the button click
+    $("#addTrain").on("click", function(){
 
-     // preventing multiple submission after pressing the button
-     event.preventDefault();
+         // preventing multiple submission after pressing the button
+         event.preventDefault();
 
-     // Initial Variables & grabbing values from text-boxes
-     var trainName = $("#trainName").val().trim();
-     var destination = $("#destination").val().trim();
-     var firstTrainTime = $("#firstTrainTime").val().trim();
-     var frequency = $("#frequency").val().trim();
+         // Initial Variables & grabbing values from text-boxes
+         var trainName = $("#trainName").val().trim();
+         var destination = $("#destination").val().trim();
+         var firstTrainTime = $("#firstTrainTime").val().trim();
+         var frequency = $("#frequency").val().trim();
 
-     //  if the text boxes are not filled in, the user will be notified
+         // if the text boxes are not filled in, the user will be notified
          if (!trainName || !destination || !firstTrainTime || !frequency){
-            $('.alert').alert()
+            $("#myModal").modal();
          }
-     // if not a number is added to frequency, the user will be notified
+         // if not a number is added to frequency, the user will be notified
          else if (isNaN(frequency)){
-            $('.alert').alert()
+            $("#myModal").modal();
          }
          else{
             var newTrain = {
@@ -42,17 +43,18 @@ var firebaseConfig = {
             firstTrainTime: firstTrainTime,
             frequency: frequency
             }
-         }   
-// pushes information to firbase
+        }
+
+     // pushes information to firbase
      database.ref().push(newTrain);
-    
-    //  clears textbox after form submitted
-     function clearText() {
-        $("textarea").val("");
-     }
      
-     clearText()
- });
+     //  clears textbox after form submitted
+     //  function clearText() {
+     //     $("textarea").val("");
+     //  }
+     
+     //  clearText()
+     });
 
 
  //  Materialize JS
@@ -68,20 +70,21 @@ var firebaseConfig = {
  $('#firstTrainTime').val();
  M.textareaAutoResize($('#firstTrainTime'));
 
- 
- database.ref().on("child_added", function(snapshot){
+    //  adds information from fireside data to table
+     database.ref().on("child_added", function(snapshot){
     
-    // get the value from the snapshot
+     // get the value from the snapshot
      var sv = snapshot.val();
 
-    // Changing HTML to reflect new data
+     // Changing HTML to reflect new data
      var trainName = snapshot.val().trainName;
      var destination = snapshot.val().destination;
      var frequency = snapshot.val().frequency;
 
-    //jquery to append to your html table
+     //jquery to append to your html table
      var tr=$("<tr>");
 
+     //  creates dynamic table data
      var td1=$("<td>");
      td1.text(trainName)
      tr.append(td1)
@@ -95,7 +98,7 @@ var firebaseConfig = {
      tr.append(td3)
 
 
-
+     //using moment from activity 20
      var tFrequency = sv.frequency;
 
      var firstTime = sv.firstTrainTime;
@@ -117,7 +120,7 @@ var firebaseConfig = {
 
      var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
-
+     //  dynamically creates table data from moment calcualations
      var td4=$("<td>")
      td4.text(moment(nextTrain).format("HH:mm"))
      tr.append(td4)
@@ -130,19 +133,22 @@ var firebaseConfig = {
      $("tbody").append(tr);
 
 
-        // handles errors
+     // handles errors
      }, function(errorObject) {
      console.log("Errors Handled: " + errorObject.code);
      });
+
+
  // assuming train stop at midnight (last train)
  // if (diffTime < 0){
  //     nextTrain = firstTime
  //     diffTime = diffTime * -1 
  // }
 
+//  reload page
 //  https://itsolutionstuff.com/post/automatically-refresh-or-reload-a-page-using-jquery-exampleexample.html
    setTimeout(function(){
        location.reload();
-   },60000);
+   },120000);
 
 });
