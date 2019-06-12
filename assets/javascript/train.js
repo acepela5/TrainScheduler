@@ -122,8 +122,8 @@ $(document).ready(function(){
 
      // perameters for a future time  
      if(diffTime < 0){
-        diffTime = diffTime * -1 
-        tMinutesTillTrain= 1 + diffTime;
+        diffTime = (diffTime * -1) + 1
+        tMinutesTillTrain=diffTime;
         nextTrain=moment().add(diffTime, "minutes");
      }
 
