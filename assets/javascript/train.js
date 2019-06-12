@@ -30,13 +30,16 @@ $(document).ready(function(){
 
          // if the text boxes are not filled in, the user will be notified
          if (!trainName || !destination || !firstTrainTime || !frequency){
-            $("#myModal").modal();
+            console.log("blah");
+            $('#myModal').modal();
          }
          // if not a number is added to frequency, the user will be notified
          else if (isNaN(frequency)){
-            $("#myModal").modal();
+            console.log("meh");
+            $('#modal2').modal();
          }
          else{
+            console.log("maybe");
             var newTrain = {
             trainName: trainName,
             destination: destination,
@@ -48,14 +51,15 @@ $(document).ready(function(){
      // pushes information to firbase
      database.ref().push(newTrain);
      
-     //  clears textbox after form submitted
-     //  function clearText() {
-     //     $("textarea").val("");
-     //  }
      
-     //  clearText()
      });
 
+     //  clears textbox after form submitted
+     function clearText() {
+        $("textarea").val("");
+     }
+    
+     
 
  //  Materialize JS
  $('#trainName').val();
@@ -110,15 +114,18 @@ $(document).ready(function(){
 
      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 
-     if(diffTime < 0){
-        diffTime = diffTime * -1 
-     }
-
      var tRemainder = diffTime % tFrequency;
 
      var tMinutesTillTrain = tFrequency - tRemainder;
 
      var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+     // perameters for a future time  
+     if(diffTime < 0){
+        diffTime = diffTime * -1 
+        tMinutesTillTrain= 1 + diffTime;
+        nextTrain=moment().add(diffTime, "minutes");
+     }
 
      //  dynamically creates table data from moment calcualations
      var td4=$("<td>")
@@ -132,18 +139,16 @@ $(document).ready(function(){
 
      $("tbody").append(tr);
 
+     clearText()
 
      // handles errors
      }, function(errorObject) {
      console.log("Errors Handled: " + errorObject.code);
+
      });
 
 
- // assuming train stop at midnight (last train)
- // if (diffTime < 0){
- //     nextTrain = firstTime
- //     diffTime = diffTime * -1 
- // }
+ 
 
 //  reload page
 //  https://itsolutionstuff.com/post/automatically-refresh-or-reload-a-page-using-jquery-exampleexample.html
