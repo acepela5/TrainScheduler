@@ -110,9 +110,9 @@ $(document).ready(function(){
      var firstTimeConverted = moment(firstTime, "HH:mm")
 
      var currentTime = moment();
-     console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+     console.log("CURRENT TIME: " + currentTime.format("hh:mm"));
 
-     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+     var diffTime = moment().diff(firstTimeConverted, "minutes");
 
      var tRemainder = diffTime % tFrequency;
 

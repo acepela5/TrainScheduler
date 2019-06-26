@@ -10,12 +10,13 @@ The table also lets users know when the next train will be arriving as well as h
 - HTML5
 - CSS
 - Materialize
+- JavaScript
 - Bootstrap
 - Moment
 ## Screenshot
 ---
 
-![ ](Screenshot(29).png)
+![ ](/Screenshot(32).png)
 
 
 ## Comments
