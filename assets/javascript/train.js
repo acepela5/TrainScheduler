@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+   $('#textarea1').val('New Text');
+  M.textareaAutoResize($('#textarea1'));
+
     // firebase key
     var firebaseConfig = {
         apiKey: "AIzaSyDIe9l7AALkLkH5PiXloWMd35ir5W3FAOY",
