@@ -21,4 +21,4 @@ This app would be used by admin at a train station to give passengers informatio
 Adi Cepela - https://github.com/acepela5
 
 ## Deployed Link
-httpd://acepela5.github.io/TrainScheduler/
+https://acepela5.github.io/TrainScheduler/
